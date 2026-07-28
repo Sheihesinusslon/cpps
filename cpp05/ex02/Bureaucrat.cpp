@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 void Bureaucrat::checkGrade(int grade)
 {
@@ -46,6 +47,34 @@ const std::string &Bureaucrat::getName() const
 int Bureaucrat::getGrade() const
 {
     return grade;
+}
+
+void Bureaucrat::signForm(AForm &f)
+{
+    try
+    {
+        f.beSigned(*this);
+        std::cout << *this << " signed " << f << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << *this << " couldn't sign " << f
+                    << " because " << e.what() << std::endl;
+    }
+}
+
+void Bureaucrat::executeForm(const AForm &form) const
+{
+    try
+    {
+        form.execute(*this);
+        std::cout << *this << " executed " << form << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << *this << " couldn't execute " << form
+                    << " because " << e.what() << std::endl;
+    }
 }
 
 Bureaucrat &Bureaucrat::operator++()

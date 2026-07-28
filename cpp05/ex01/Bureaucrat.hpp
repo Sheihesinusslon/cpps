@@ -2,8 +2,10 @@
 #define BUREAUCRAT_HPP
 
 #include <string>
-#include <ostream>
+#include <iostream>
 #include <exception>
+
+class Form;
 
 class Bureaucrat {
 private:
@@ -21,6 +23,7 @@ public:
 
     const std::string &getName() const;
     int getGrade() const;
+    void signForm(Form &f);
 
     Bureaucrat &operator++();
     Bureaucrat operator++(int);
