@@ -9,7 +9,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
-%.o: %.cpp Makefile
+%.o: %.cpp Makefile Base.hpp ABC.hpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

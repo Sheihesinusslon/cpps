@@ -2,11 +2,16 @@
 #define SPAN_HPP
 
 #include <exception>
+#include <vector>
+#include <algorithm>
+#include <iterator>
+#include <numeric>
 
 class Span
 {
 private:
-    unsigned int N;
+    unsigned int maxSize;
+    std::vector<int> numbers;
 
 public:
     Span();
@@ -19,6 +24,14 @@ public:
     int shortestSpan() const;
     int longestSpan() const;
 
+    template <typename InputIterator>
+    void addRange(InputIterator begin, InputIterator end)
+    {
+        if (numbers.size() + std::distance(begin, end) > maxSize)
+            throw SpanFullException();
+        numbers.insert(numbers.end(), begin, end);
+    }
+
     class SpanFullException : public std::exception {
     public:
         virtual const char *what() const throw();
@@ -29,6 +42,5 @@ public:
         virtual const char *what() const throw();
     };
 };
-
 
 #endif

@@ -9,7 +9,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
-%.o: %.cpp Makefile
+%.o: %.cpp Makefile ScalarConverter.hpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
