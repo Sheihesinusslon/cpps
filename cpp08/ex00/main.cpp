@@ -7,6 +7,8 @@
 
 void testVector(int *array, int size)
 {
+    std::cout << "--- test with std::vector ---" << std::endl;
+
     std::vector<int> v(array, array+size);
 
     std::cout << easyfind(v, 0)   << std::endl;
@@ -20,6 +22,8 @@ void testVector(int *array, int size)
 
 void testList(int *array, int size)
 {
+    std::cout << "--- test with std::list ---" << std::endl;
+
     std::list<int> l(array, array+size);
     std::cout << easyfind(l, 30) << std::endl;
     std::cout << easyfind(l, 99) << std::endl;
@@ -27,6 +31,8 @@ void testList(int *array, int size)
 
 void testDeque(int *array, int size)
 {
+    std::cout << "--- test with std::deque ---" << std::endl;
+
     std::deque<int> d(array, array+size);
     std::cout << easyfind(d, 20) << std::endl;
     std::cout << easyfind(d, 99) << std::endl;

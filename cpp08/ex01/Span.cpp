@@ -40,25 +40,30 @@ void Span::addNumber(int nb)
     numbers.push_back(nb);
 }
 
-int Span::shortestSpan() const
+static unsigned int unsignedDiff(int a, int b)
+{
+    return static_cast<unsigned int>(a) - static_cast<unsigned int>(b);
+}
+
+unsigned int Span::shortestSpan() const
 {
     if (numbers.size() < 2)
         throw SpanTooShortException();
-    
+
     std::vector<int> tmp(numbers);
     std::sort(tmp.begin(), tmp.end());
 
-    std::vector<int> diffs(tmp.size());
-    std::adjacent_difference(tmp.begin(), tmp.end(), diffs.begin());
+    std::vector<unsigned int> diffs(tmp.size());
+    std::adjacent_difference(tmp.begin(), tmp.end(), diffs.begin(), unsignedDiff);
     return *std::min_element(diffs.begin() + 1, diffs.end());
 }
 
-int Span::longestSpan() const
+unsigned int Span::longestSpan() const
 {
     if (numbers.size() < 2)
         throw SpanTooShortException();
-    return *std::max_element(numbers.begin(), numbers.end())
-         - *std::min_element(numbers.begin(), numbers.end());
+    return static_cast<unsigned int>(*std::max_element(numbers.begin(), numbers.end()))
+         - static_cast<unsigned int>(*std::min_element(numbers.begin(), numbers.end()));
 }
 
 const char *Span::SpanFullException::what() const throw()

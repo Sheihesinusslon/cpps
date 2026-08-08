@@ -21,8 +21,8 @@ public:
     ~Span();
 
     void addNumber(int nb);
-    int shortestSpan() const;
-    int longestSpan() const;
+    unsigned int shortestSpan() const;
+    unsigned int longestSpan() const;
 
     template <typename InputIterator>
     void addRange(InputIterator begin, InputIterator end)
